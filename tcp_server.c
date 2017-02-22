@@ -13,19 +13,20 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
+/* Error handler */
+void handle_error(char* type) {
+	perror(type);
+	exit(1);
+
+}
+
 int main(int argc, char *argv[]) {
 	int sockfd, newsockfd, portno, clilen;
 	struct sockaddr_in server, client;
 	char buffer[256];
 	struct sockaddr_in serv_addr, cli_addr;
 	int n;
-
-	/* Error handler */
-	void handle_error(char* type) {
-		return perror(type);
-		exit(1);
-	}
-
+	
 	/* Call socket() */
 	sockfd = socket(AF_INET, SOCK_STREAM, 0);
 
